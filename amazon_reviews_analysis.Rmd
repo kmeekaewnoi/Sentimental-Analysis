@@ -11,17 +11,17 @@ output:
 ---
 
 
-Exploring and preparing the data ---- 
+Exploring and preparing the data.
 read the Reviews data into the review data frame
 
-**Data** The Review data has 10 columns and 568,454 observations.  
+
+**Data** The Review data has 10 columns and 35,173 observations.  
 ```{r }
 review_raw<-read.csv("./dataset/amazon_reviews.csv",stringsAsFactors = FALSE)
 head(review_raw)
 ```
 Examine the structure of the Reviews data.
-The only column that we are interested in are Score which is the product rating score from 1 to 5, and 
-summary which are the customer reviews in text.
+The only two columns that we are interested in are Score, which are the products rating score range from 1 to 5, and review summaries which are the customer reviews in text.
 ```{r }
 str(review_raw)
 ```
@@ -47,7 +47,7 @@ head(review_raw$rating)
 
 Build a corpus using the text mining (tm) package.
 ```{r }
-#install.packages("tm")
+install.packages("tm")
 library(tm)
 review_corpus <- VCorpus(VectorSource(review_raw$Summary))
 ```
@@ -79,7 +79,7 @@ review_corpus_clean <- tm_map(review_corpus_clean, removePunctuation) # remove p
 ```
 Illustration of word stemming
 ```{r }
-#install.packages("SnowballC")
+install.packages("SnowballC")
 library(SnowballC)
 review_corpus_clean <- tm_map(review_corpus_clean, stemDocument)
 review_corpus_clean <- tm_map(review_corpus_clean, stripWhitespace) # eliminate unneeded whitespace
@@ -112,7 +112,7 @@ prop.table(table(review_test_labels))
 Word cloud visualization
 
 ```{r }
-#install.packages("wordcloud")
+install.packages("wordcloud")
 library(wordcloud)
 wordcloud(review_corpus_clean, min.freq = 50, random.order = FALSE)
 ```
@@ -160,13 +160,13 @@ review_train <- apply(review_dtm_freq_train, MARGIN = 2, convert_counts)
 review_test  <- apply(review_dtm_freq_test, MARGIN = 2, convert_counts)
 
 ```
-**Step 3**: Training a model on the data
+Training a model on the data
 ```{r }
-#install.packages("e1071")
+install.packages("e1071")
 library(e1071)
 review_classifier<-naiveBayes(review_train,review_train_labels)
 ```
-**Step 4**: Evaluating model performance
+ Evaluating model performance
 ```{r }
 review_test_predict<-predict(review_classifier,review_test)
 head(review_test_predict)
@@ -181,37 +181,21 @@ Confusion Matrix
 table(review_test_predict,review_test_labels)
 
 ```
-Accuracy
-```{r}
-sum(review_test_predict==review_test_labels)/nrow(review_test)
-```
-
 
 ```{r }
-#install.packages("gmodels")
+install.packages("gmodels")
 library(gmodels)
 CrossTable(review_test_predict,review_test_labels,
            prob.chisq =FALSE, prob.t = FALSE, prob.r = FALSE,
            dnn = c('predict','actual'))
 
 ```
-```{r}
-(582+6515+95)/(582+6515+95+284+93+660+422+65+158)
-```
 
-
-
-
-
-**Step 5**: Improving model performance
+Improving model performance
 ```{r }
 review_classifier2<-naiveBayes(review_train,review_train_labels,laplace = 1)
 review_test_predict2<-predict(review_classifier2,review_test)
 CrossTable(review_test_predict2,review_test_labels,
            prob.chisq =FALSE, prob.t = FALSE, prob.r = FALSE,
            dnn = c('predict','actual'))
-```
-Find the accuracy
-```{r}
-(593+6657+59)/(593+6657+59+207+93+667+458+47+93)
 ```
