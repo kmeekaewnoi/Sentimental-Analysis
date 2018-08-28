@@ -15,7 +15,7 @@ The data set has 568,454 observations and 10 variables. The variables are ID num
 
   - Look at the proportion of the score.
   
-    ![](images/barplot.jpg)
+    ![](https://raw.githubusercontent.com/kmeekaewnoi/Sentimental-Analysis/master/Images/barplot.jpg)
   
   The bar plot above shows the distribution of each review score. We can see that most of customers give 5-star reviews. Four-star reviews are second, and two-star reviews are the least proportion compare to others.
 
@@ -64,28 +64,28 @@ We can see that all the characters are now in lower case.
   
     The WordCloud below shows the frequent word that customers wrote in the reviews. We can see words that are most used in the reviews are “Great”, “Good”, “Love”,and “Best”.
   
-    ![](images/wordcloud1.jpg)
+    ![](https://raw.githubusercontent.com/kmeekaewnoi/Sentimental-Analysis/master/Images/wordcloud1.jpg)
 
 - Wordcloud visualization for " Good " reviews.
   
   The wordcloud below shows the frequent words customer wrote when they gave good reviews. We can see that words that are most used in the reviews are “Great”, “Best”, “Love”, “Delicious”.
-  ![](images/wordcloud3.jpg)
+  ![](https://raw.githubusercontent.com/kmeekaewnoi/Sentimental-Analysis/master/Images/wordcloud3.jpg)
 
 - Wordcloud visualization for " Bad " reviews.
 
     The wordcloud below shows the frequent words customers wrote when they gave bad reviews. We can see words that are most used in the reviews are “Not”,“Bad”, “Awful”, “Horrible”.
 
-    ![](images/wordcloud2.jpg)
+    ![](https://raw.githubusercontent.com/kmeekaewnoi/Sentimental-Analysis/master/Images/wordcloud2.jpg)
 
 ## Result
 I used the "gmodels" package to give the accuracy.
 The tabel below shows the confusion matrix between the actual and predict.
 
-![](images/Matrix1.PNG)
+![](https://raw.githubusercontent.com/kmeekaewnoi/Sentimental-Analysis/master/Images/Matrix1.PNG)
 
 To find the accuracy, we will combine the result from the table start from the left diagonal and divide by all the numbers in the table. 
 
-![](images/result1.PNG)
+![](https://raw.githubusercontent.com/kmeekaewnoi/Sentimental-Analysis/master/Images/result1.PNG)
 
 We get the accuracy = 81%
 
@@ -93,7 +93,7 @@ We get the accuracy = 81%
   
 We can try to improve the accuracy by using laplace = 1. The confusion matrix shows below.
 
-![](images/Matrix2.PNG)
+![](https://raw.githubusercontent.com/kmeekaewnoi/Sentimental-Analysis/master/Images/Matrix2.PNG)
 
 The accuracy = 82%. By using Laplace, the accuracy only increase by 1 %.
 
